@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Snack & Drink DAVE's - Reservaciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Íconos -->
+  <link rel="icon" href="imagenes/SD_logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="imagenes/SD_logo.png">
+  <!-- META PWA -->
+  <meta name="theme-color" content="#FB314E">
+  <link rel="manifest" href="manifest.json">
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Estilos -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{
+      background:linear-gradient(135deg,#FB314E,#FF9A8B);
+      min-height:100vh;text-align:center;
+      display:flex;flex-direction:column;color:#333;
+    }
+    header{
+      background:#fff;box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      display:flex;justify-content:space-between;align-items:center;
+      padding:15px 30px;position:sticky;top:0;z-index:1000;
+    }
+    .reservaciones{
+      max-width:800px;margin:40px auto;padding:40px;
+      background:#fff;border-radius:15px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.1);text-align:left;
+    }
+    .reservaciones h2{
+      text-align:center;color:#FB314E;font-size:2em;margin-bottom:25px;
+    }
+    .form-group{margin-bottom:20px;}
+    .form-group label{font-weight:600;margin-bottom:8px;display:block;}
+    .form-group input,.form-group select{
+      width:100%;padding:12px;border:2px solid #eee;
+      border-radius:8px;font-size:15px;transition:0.3s;
+    }
+    .form-group input:focus,.form-group select:focus{
+      border-color:#FB314E;box-shadow:0 0 8px rgba(251,49,78,0.3);
+    }
+    .btn-reservar{
+      background:linear-gradient(90deg,#25D366,#128C7E);
+      border:none;color:#fff;padding:14px;width:100%;
+      font-size:18px;font-weight:600;border-radius:8px;
+      cursor:pointer;transition:0.2s;
+    }
+    .btn-reservar:hover{transform:scale(1.03);}
+    #mensaje{text-align:center;margin-top:20px;font-weight:600;color:green;}
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo-header">
+    <img src="imagenes/SD_logo.png" style="height:50px;">
+    <span style="color:#FB314E;font-weight:700;font-size:1.2em">Snack & Drink DAVE's</span>
+  </div>
+</header>
+
+<section class="reservaciones">
+  <h2>Haz tu Reservación</h2>
+
+  <form id="formReservacion">
+
+    <div class="form-group">
+      <label>Nombre del Cliente:</label>
+      <input type="text" id="nombre" required>
+    </div>
+
+    <div class="form-group">
+      <label>Tipo de Público:</label>
+      <select id="publico" required>
+        <option value="">Selecciona</option>
+        <option>Infantil</option>
+        <option>Juvenil</option>
+        <option>Adultos</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Tipo de Fiesta:</label>
+      <select id="fiesta" required>
+        <option value="">Selecciona</option>
+        <option>Cumpleaños</option>
+        <option>Bautizo</option>
+        <option>Graduación</option>
+        <option>Reunión</option>
+        <option>Otro</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Tipo de Bebida:</label>
+      <select id="bebida" required>
+        <option value="">Selecciona</option>
+        <optgroup label="Para Niños">
+          <option>Jugos Naturales</option>
+          <option>Refrescos</option>
+          <option>Malteadas</option>
+        </optgroup>
+        <optgroup label="Para Adultos">
+          <option>Mojito Tradicional</option>
+          <option>Piña Colada</option>
+          <option>Azulito Original</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Botana / Snack:</label>
+      <select id="botana" required>
+        <option value="">Selecciona</option>
+        <optgroup label="Para Niños">
+          <option>Palomitas</option>
+          <option>Mini Sandwiches</option>
+          <option>Dulces</option>
+        </optgroup>
+        <optgroup label="Para Adultos">
+          <option>Nachos</option>
+          <option>Alitas</option>
+          <option>Tabla de Quesos</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Cantidad de Personas:</label>
+      <input type="number" id="personas" min="1" required>
+    </div>
+
+    <div class="form-group">
+      <label>Lugar del Evento:</label>
+      <input type="text" id="lugar" required>
+    </div>
+
+    <div class="form-group">
+      <label>Fecha:</label>
+      <input type="date" id="fecha" required>
+    </div>
+
+    <div class="form-group">
+      <label>Hora:</label>
+      <input type="time" id="hora" required>
+    </div>
+
+    <button type="submit" class="btn-reservar">Enviar Reservación por WhatsApp</button>
+
+  </form>
+
+  <div id="mensaje"></div>
+</section>
+
+<footer style="padding:20px;background:hsl(0, 0%, 100%);color:#555;">
+  © 2025 Snack & Drink DAVE's
+</footer>
+
+<!-- REGISTRO DEL SERVICE WORKER -->
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js")
+    .then(() => console.log("✔ SW registrado"))
+    .catch(err => console.log("❌ Error SW:", err));
+}
+</script>
+
+
+<!-- SCRIPT PRINCIPAL -->
+<script>
+$('#formReservacion').submit(async function(e){
+  e.preventDefault();
+  const nombre = $('#nombre').val();
+  const publico = $('#publico').val();
+  const fiesta = $('#fiesta').val();
+  const bebida = $('#bebida').val();
+  const botana = $('#botana').val();
+  const personas = $('#personas').val();
+  const lugar = $('#lugar').val();
+  const fecha = $('#fecha').val();
+  const hora = $('#hora').val();
+  const mensaje =
+    `📋 *Nueva Reservación*%0A%0A` +
+    `👤 *Cliente:* ${nombre}%0A` +
+    `🎉 *Público:* ${publico}%0A` +
+    `🥳 *Fiesta:* ${fiesta}%0A` +
+    `🍹 *Bebida:* ${bebida}%0A` +
+    `🍟 *Botana:* ${botana}%0A` +
+    `👥 *Invitados:* ${personas}%0A` +
+    `📍 *Lugar:* ${lugar}%0A` +
+    `📅 *Fecha:* ${fecha}%0A` +
+    `⏰ *Hora:* ${hora}%0A%0A` +
+    `✔ Enviado desde la web`;
+  // ===== Notificación Push con LOGO =====
+  try {
+    const permiso = await Notification.requestPermission();
+
+    if (permiso === "granted") {
+      const reg = await navigator.serviceWorker.getRegistration();
+      if (reg) {
+        reg.showNotification("Snack & Drink DAVE's", {
+          body: "Tus datos se están redirigiendo a WhatsApp...",
+          icon: "imagenes/SD_logo.png",   // 🔥 tu logo
+          badge: "imagenes/SD_logo.png",  // 🔥 insignia del logo
+          vibrate: [200, 100, 200]
+        });
+      }
+    }
+  } catch (err) {
+    console.log("Error con las notificaciones:", err);
+  }
+
+  // === Abrir WhatsApp ===
+  const url = `https://wa.me/527443861188?text=${mensaje}`;
+  window.open(url, "_blank");
+});
+</script>
+
+
+
+
+</body>
+</html>
