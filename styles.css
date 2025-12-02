@@ -31,15 +31,14 @@ header {
 
 .logo-header img {
   max-height: 65px;
-  width: auto;
 }
 
 .logo-header span {
   font-weight: bold;
   font-size: 18px;
-  color: var(--blanco);
 }
 
+/* NAV */
 nav ul {
   display: flex;
   list-style: none;
@@ -56,7 +55,7 @@ nav ul li a {
 
 .menu-toggle {
   display: none;
-  font-size: 28px;
+  font-size: 30px;
   cursor: pointer;
   color: var(--blanco);
 }
@@ -64,7 +63,7 @@ nav ul li a {
 /* ================= BANNER ================= */
 .banner {
   width: 100%;
-  height: 70vh;
+  height: 60vh;
   overflow: hidden;
 }
 
@@ -84,6 +83,25 @@ section {
   max-width: 900px;
 }
 
+/* ================= SOBRE NOSOTROS ================= */
+.sobre-nosotros {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.sobre-nosotros .texto {
+  flex: 1 1 60%;
+}
+
+.sobre-nosotros h2 {
+  color: #FB314E;
+}
+
+.sobre-nosotros .logo img {
+  max-width: 180px;
+}
+
 /* ================= SLIDER ================= */
 .slider-container {
   overflow: hidden;
@@ -94,7 +112,7 @@ section {
 .slider-track {
   display: flex;
   gap: 20px;
-  animation: scroll 20s linear infinite;
+  animation: scroll 22s linear infinite;
 }
 
 @keyframes scroll {
@@ -115,8 +133,8 @@ section {
 .slider-track .card img {
   width: 100%;
   height: 120px;
+  border-radius: 6px;
   object-fit: cover;
-  border-radius: 5px;
 }
 
 /* ================= VIDEOS ================= */
@@ -125,35 +143,35 @@ section {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  margin: 20px 0;
 }
 
 .videos-cards .card {
-  flex: 0 0 250px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  flex: 0 0 280px;
+  background: var(--blanco);
   padding: 10px;
+  border-radius: 12px;
   text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .videos-cards iframe {
+  width: 100%;
+  height: 250px;
   border-radius: 12px;
 }
 
-/* ================= CONTACTO Y UBICACIÓN ================= */
+/* ================= CONTACTO Y UBICACION ================= */
 .contacto-ubicacion {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-.contacto, .ubicacion {
+#contacto, #ubicacion {
   flex: 1 1 45%;
 }
 
-.ubicacion iframe {
+#ubicacion iframe {
   width: 100%;
   height: 300px;
   border: none;
@@ -161,10 +179,10 @@ section {
 
 /* ================= FOOTER ================= */
 footer {
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: var(--blanco);
   text-align: center;
-  padding: 15px;
+  padding: 20px;
 }
 
 footer img {
@@ -173,53 +191,38 @@ footer img {
   margin: 0 auto 10px auto;
 }
 
-/* ================= SOBRE NOSOTROS ================= */
-.sobre-nosotros {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px auto;
+/* ====================================================== */
+/* =============== RESPONSIVE OPTIMIZADO ================= */
+/* ====================================================== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 900px) {
+  .banner {
+    height: 45vh;
+  }
+
+  nav ul {
+    gap: 10px;
+  }
 }
 
-.sobre-nosotros .texto {
-  flex: 1 1 60%;
-  color: #333;
-}
-
-.sobre-nosotros .texto h2 {
-  color: #FB314E;
-  font-size: 28px;
-  margin-bottom: 15px;
-}
-
-.sobre-nosotros .logo img {
-  max-width: 200px;
-  border-radius: 12px;
-}
-
-/* ================= MENÚ RESPONSIVE ================= */
+/* Menu responsive + sliders verticales */
 @media (max-width: 600px) {
+  .menu-toggle {
+    display: block;
+  }
+
   nav ul {
     display: none;
     flex-direction: column;
-    gap: 10px;
     width: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 10px 0;
+    background: rgba(0,0,0,0.9);
     text-align: center;
+    padding: 15px 0;
   }
 
   nav ul.active {
     display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
   }
 
   .slider-track {
@@ -232,55 +235,26 @@ footer img {
     margin: 0 auto;
   }
 
-  .videos-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .videos-cards .card {
-    width: 90%;
+    width: 95%;
   }
 
-  .contacto-ubicacion {
-    flex-direction: column;
-  }
-
-  .contacto, .ubicacion {
+  #contacto, #ubicacion {
     flex: 1 1 100%;
   }
 }
 
-/* ================= AJUSTES MEDIA QUERIES ================= */
-@media (max-width: 1000px) {
-  header {
-    background-color: #32a852;
-  }
-
-  section h1, section h2, section h3 {
-    font-size: 1.5em;
-    color: #e36922;
-  }
-}
-
-@media (max-width: 799px) {
-  .logo-header {
-    width: 227px;
-    margin: 0 auto;
-    display: block;
-  }
-}
-
-@media (max-width: 500px) {
-  .logo-header img {
-    content: url("/imagenes/logoDS.png");
-    width: 50px;
-    height: 50px;
-  }
-}
-
-@media (max-width: 460px) {
+/* Pantallas muy pequeñas */
+@media (max-width: 420px) {
   .videos-cards iframe {
-    width: 100%;
     height: 200px;
+  }
+
+  .logo-header img {
+    max-height: 50px;
+  }
+
+  .logo-header span {
+    font-size: 16px;
   }
 }
