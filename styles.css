@@ -18,7 +18,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 12px 20px;
   background-color: rgba(0, 0, 0, 0.55);
   flex-wrap: wrap;
 }
@@ -26,7 +26,7 @@ header {
 .logo-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .logo-header img {
@@ -34,17 +34,10 @@ header {
   width: auto;
 }
 
-.logo-header span {
-  font-weight: bold;
-  font-size: 20px;
-  color: var(--blanco);
-}
-
-/* NAV */
 nav ul {
   display: flex;
   list-style: none;
-  gap: 15px;
+  gap: 20px;
   margin: 0;
   padding: 0;
 }
@@ -57,7 +50,7 @@ nav ul li a {
 
 .menu-toggle {
   display: none;
-  font-size: 32px;
+  font-size: 30px;
   cursor: pointer;
   color: var(--blanco);
 }
@@ -79,11 +72,12 @@ nav ul li a {
 section {
   background: rgba(255, 255, 255, 0.95);
   color: var(--negro);
-  border-radius: 12px;
+  border-radius: 10px;
   margin: 20px auto;
   padding: 20px;
-  max-width: 1000px;
+  max-width: 900px;
 }
+
 
 /* ================= SLIDER ================= */
 .slider-container {
@@ -95,7 +89,7 @@ section {
 .slider-track {
   display: flex;
   gap: 20px;
-  animation: scroll 20s linear infinite;
+  animation: scroll 22s linear infinite;
 }
 
 @keyframes scroll {
@@ -108,16 +102,9 @@ section {
   width: 180px;
   background: var(--blanco);
   color: var(--negro);
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
   padding: 10px;
-}
-
-.slider-track .card img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 5px;
 }
 
 /* ================= VIDEOS ================= */
@@ -129,17 +116,16 @@ section {
 }
 
 .videos-cards .card {
-  flex: 0 0 280px;
-  background: var(--blanco);
+  flex: 0 0 260px;
+  background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   padding: 10px;
-  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .videos-cards iframe {
   width: 100%;
-  height: 250px;
+  height: 170px;
   border-radius: 12px;
 }
 
@@ -155,9 +141,15 @@ section {
   flex: 1 1 45%;
 }
 
+.ubicacion iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+}
+
 /* ================= FOOTER ================= */
 footer {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.55);
   color: var(--blanco);
   text-align: center;
   padding: 15px;
@@ -165,8 +157,7 @@ footer {
 
 footer img {
   height: 40px;
-  display: block;
-  margin: 0 auto 10px auto;
+  margin-bottom: 10px;
 }
 
 /* ================= SOBRE NOSOTROS ================= */
@@ -175,11 +166,10 @@ footer img {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
-  padding: 20px;
-  margin: 20px auto;
+  padding: 25px;
 }
 
 .sobre-nosotros .texto {
@@ -189,45 +179,32 @@ footer img {
 
 .sobre-nosotros .texto h2 {
   color: #FB314E;
-  font-size: 28px;
+  font-size: 30px;
+  margin-bottom: 15px;
 }
 
-.sobre-nosotros .logo img {
-  max-width: 200px;
-  border-radius: 12px;
-}
+/* ==========================================================
+   RESPONSIVE FULL POWER 🚀 (Celulares / Tablet / Laptop / PC)
+   ========================================================== */
 
-/* ============================================================
-   🎯 BREAKPOINTS RESPONSIVOS PROFESIONALES
-   ============================================================ */
+/* ========== TABLET 900px ========== */
+@media (max-width: 900px) {
 
-/* =============== SMARTWATCH (200px - 299px) 😎 =============== */
-@media (max-width: 300px) {
-
-  header {
-    flex-direction: column;
-    text-align: center;
+  .videos-cards .card {
+    flex: 0 0 330px;
   }
 
-  .logo-header span {
-    font-size: 14px;
-  }
-
-  .slider-track .card {
-    width: 95%;
-  }
-
-  iframe {
-    height: 160px !important;
+  .banner {
+    height: 55vh;
   }
 }
 
-/* =============== CELULARES (300px - 599px) ================= */
+/* ========== CELULARES 600px ========== */
 @media (max-width: 600px) {
   nav ul {
     display: none;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     width: 100%;
     background: rgba(0, 0, 0, 0.9);
     padding: 15px 0;
@@ -247,16 +224,6 @@ footer img {
     animation: none;
   }
 
-  .slider-track .card {
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .videos-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .videos-cards .card {
     width: 95%;
   }
@@ -270,39 +237,22 @@ footer img {
   }
 }
 
-/* =============== TABLETS (600px - 900px) ================= */
-@media (max-width: 900px) {
-  .videos-cards .card {
-    flex: 0 0 45%;
+/* ========== SMARTWATCH / MINIPANTALLA (≤ 300px) 😂 ========== */
+@media (max-width: 300px) {
+  .logo-header img {
+    width: 40px;
+    height: 40px;
   }
 
-  .slider-track .card {
-    width: 150px;
-  }
-}
-
-/* =============== LAPTOPS PEQUEÑAS (900px - 1200px) ======== */
-@media (max-width: 1200px) {
-  section {
-    max-width: 90%;
-  }
-
-  .logo-header span {
-    font-size: 18px;
-  }
-}
-
-/* =============== MONITORES GRANDES (1200px +) ============= */
-@media (min-width: 1600px) {
-  section {
-    max-width: 1200px;
+  nav ul li a {
+    font-size: 14px;
   }
 
   .banner {
-    height: 80vh;
+    height: 35vh;
   }
 
-  .videos-cards .card iframe {
-    height: 320px;
+  section {
+    padding: 10px;
   }
 }
