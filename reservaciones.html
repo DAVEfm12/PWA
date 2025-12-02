@@ -269,11 +269,15 @@
   © 2025 Snack & Drink DAVE's
 </footer>
 
-<script>
+  <script>
+
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
+  navigator.serviceWorker.register("sw.js")
+    .then(reg => console.log("SW registrado ✔️"))
+    .catch(err => console.log("SW error:", err));
 }
 
+// ================ ENVIAR RESERVACIÓN ==================
 $('#formReservacion').submit(async function(e){
   e.preventDefault();
 
@@ -292,26 +296,46 @@ $('#formReservacion').submit(async function(e){
 
   const url = `https://wa.me/527443861188?text=${mensaje}`;
   window.open(url, "_blank");
+
+  // Notificación interna
+  if (Notification.permission === "granted") {
+    navigator.serviceWorker.ready.then(reg => {
+      reg.showNotification("Reservación enviada 🎉", {
+        body: "Tu solicitud se mandó correctamente por WhatsApp.",
+        icon: "SD_logo.png",
+        vibrate: [200, 100, 200],
+        badge: "SD_logo.png"
+      });
+    });
+  }
 });
 
-  const url = `https://wa.me/527443861188?text=${mensaje}`;
-window.open(url, "_blank");
+// ================ ACTIVAR NOTIFICACIONES ==================
+function solicitarNotificacion() {
+  if (!("Notification" in window)) {
+    alert("Tu navegador no soporta notificaciones 😢");
+    return;
+  }
 
-// Notificación interna
-if (Notification.permission === "granted") {
-  navigator.serviceWorker.ready.then(reg => {
-    reg.showNotification("Reservación enviada 🎉", {
-      body: "Tu solicitud se mandó correctamente por WhatsApp.",
-      icon: "imagenes/SD_logo.png",
-      vibrate: [200, 100, 200],
-      badge: "imagenes/SD_logo.png"
-    });
+  Notification.requestPermission().then(permiso => {
+    if (permiso === "granted") {
+      navigator.serviceWorker.ready.then(reg => {
+        reg.showNotification("Notificaciones activadas 🔔", {
+          body: "Ahora recibirás alertas importantes.",
+          icon: "SD_logo.png",
+          badge: "SD_logo.png"
+        });
+      });
+    } else {
+      alert("No activaste las notificaciones 😕");
+    }
   });
 }
 
-</script>
 
+</script>  
 </body>
 </html>
+
 
 
