@@ -37,3 +37,19 @@ self.addEventListener("fetch", event => {
       .then(res => res || fetch(event.request))
   );
 });
+
+self.addEventListener("notificationclick", event => {
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow("index.html")
+  );
+});
+
+self.addEventListener("push", event => {
+  const data = event.data ? event.data.text() : "Nueva notificación";
+  self.registration.showNotification("Snack & Drink DAVE's", {
+    body: data,
+    icon: "SD_logo.png"
+  });
+});
+
