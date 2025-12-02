@@ -1,4 +1,4 @@
-html {
+html { 
   scroll-behavior: smooth;
 }
 
@@ -75,9 +75,8 @@ h2{
   height: auto;
   max-height: 70vh;
   object-fit: contain;
-  background: #000; /* para que si la imagen no llena, se vea elegante */
+  background: #000;
 }
-
 
 /* ========================================= */
 /* ============= SECCIONES ================== */
@@ -91,10 +90,7 @@ section{
   border-radius: var(--radius);
   padding: 35px;
   box-shadow: var(--sombra);
-  margin-left: auto;
-  margin-right: auto;
-  scroll-margin-top: 110px; /* ajustado según tu navbar */
-
+  scroll-margin-top: 140px; /* Alineación perfecta al hacer clic en el navbar */
 }
 
 /* ========================================= */
@@ -104,7 +100,9 @@ section{
   display: flex;
   gap: 30px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* CENTRADO GLOBAL */
+  flex-wrap: wrap; /* Para celulares y tablets */
+  text-align: center;
 }
 
 .sobre-nosotros ul{
@@ -116,8 +114,8 @@ section{
   width: 220px;
   height: auto;
   object-fit: contain;
+  margin: 0 auto;
 }
-
 
 /* ========================================= */
 /* ================ SLIDER ================== */
@@ -163,7 +161,6 @@ section{
   border-radius: 10px;
 }
 
-
 /* ========================================= */
 /* ================ VIDEOS ================== */
 /* ========================================= */
@@ -171,7 +168,7 @@ section{
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
-  justify-content: center;
+  justify-content: center; /* CENTRADO */
 }
 
 .videos-cards .card{
@@ -189,7 +186,6 @@ section{
   border-radius: 12px;
 }
 
-
 /* ========================================= */
 /* ======== CONTACTO / UBICACIÓN ============ */
 /* ========================================= */
@@ -197,7 +193,9 @@ section{
   display: flex;
   gap: 30px;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Para tablets y móviles */
+  text-align: center;
+  flex-direction: column; /* Acomodo universal */
 }
 
 .mapa{
@@ -207,7 +205,6 @@ section{
   border-radius: var(--radius);
   border: none;
 }
-
 
 /* ========================================= */
 /* ================ FOOTER ================== */
@@ -228,8 +225,10 @@ footer img{
 /* ========================================= */
 /* ============= RESPONSIVE ================= */
 /* ========================================= */
+/* 🔵 TABLET MEDIANA (hasta 768px) */
 @media (max-width: 768px){
 
+  /* El slider deja de ser animado para que no se bugée */
   .slider-track{
     animation: none;
     flex-wrap: wrap;
@@ -246,12 +245,24 @@ footer img{
   }
 }
 
+/* 🔵 CELULARES PEQUEÑOS (hasta 480px) */
 @media (max-width: 480px){
+
+  /* Tarjetas más anchas para pantallas pequeñas */
   .slider-track .card{
     width: 95%;
   }
 
   .banner img{
     max-height: 30vh;
+  }
+
+  /* SOBRE NOSOTROS – versión móvil */
+  .sobre-nosotros{
+    flex-direction: column;
+  }
+
+  .sobre-nosotros img{
+    width: 180px;
   }
 }
