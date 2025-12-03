@@ -15,11 +15,10 @@
     });
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('/sw.js')
       .then(reg => console.log("Service Worker registrado:", reg))
       .catch(err => console.error("Error al registrar el Service Worker:", err));
   }
-
 
     // ================= RESERVACIONES =================
     if ($('#formReservacion').length) {
@@ -54,3 +53,17 @@
     }
 
   });
+
+  let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  document.getElementById("btnInstalar").style.display = "block";
+
+  document.getElementById("btnInstalar").addEventListener("click", () => {
+    deferredPrompt.prompt();
+    deferredPrompt = null;
+  });
+});
